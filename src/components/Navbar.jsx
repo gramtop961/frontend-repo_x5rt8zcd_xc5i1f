@@ -1,5 +1,5 @@
 import { Menu, X, Settings, Briefcase, Mail, Rocket } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function Navbar() {
@@ -8,7 +8,6 @@ export default function Navbar() {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    // Enter compact state after slight scroll; exit when near top
     if (latest > 80 && !compact) setCompact(true);
     if (latest <= 80 && compact) setCompact(false);
   });
@@ -26,11 +25,11 @@ export default function Navbar() {
     <div className="fixed inset-x-0 top-4 z-50 flex justify-center pointer-events-none">
       <motion.nav
         layout
-        initial={{ y: -16, opacity: 0, scale: 0.98 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
+        initial={{ y: -16, opacity: 0, scale: 0.98, width: 760 }}
+        animate={{ y: 0, opacity: 1, scale: 1, width: compact ? 520 : 760 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`pointer-events-auto relative flex items-center ${compact ? "gap-2 px-2 py-1" : "gap-4 px-3 py-2"} rounded-full border border-white/10 bg-black/60 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.35)] ring-1 ring-white/5`}
-        style={{ width: compact ? 520 : undefined }}
+        style={{ maxWidth: "92vw" }}
       >
         <motion.div
           animate={{ y: [0, -2, 0] }}
