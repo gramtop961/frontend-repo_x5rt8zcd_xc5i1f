@@ -34,7 +34,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
           >
-            Heaven Software
+            <span className="font-hand text-[1.05em] font-normal">Heaven Software</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-500 to-red-600"> We craft modern apps</span>
           </motion.h1>
 

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import a clean handwritten font */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
 @layer base {
   :root {
     --font-sans: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -10,6 +13,7 @@
     --font-mona: 'Mona Sans', system-ui, sans-serif;
     --font-ibm-plex: 'IBM Plex Sans', system-ui, sans-serif;
     --font-manrope: 'Manrope', system-ui, sans-serif;
+    --font-hand: 'Caveat', ui-serif, system-ui, cursive;
   }
 
   html {
@@ -42,5 +46,9 @@
     --tw-exit-rotate: initial;
     --tw-exit-translate-x: initial;
     --tw-exit-translate-y: initial;
+  }
+
+  .font-hand {
+    font-family: var(--font-hand);
   }
 }
