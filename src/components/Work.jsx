@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const work = [
   {
@@ -25,9 +26,22 @@ export default function Work() {
           <p className="mt-3 text-zinc-300">A few highlights from recent collaborations.</p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {work.map((item) => (
-            <a key={item.title} href="#contact" className="group rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900/70 to-zinc-900/40 p-6 transition hover:border-red-500/30 hover:shadow-[0_0_40px_rgba(239,68,68,0.15)]">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+          className="mt-10 grid gap-6 md:grid-cols-3"
+        >
+          {work.map((item, i) => (
+            <motion.a
+              key={item.title}
+              variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 300, damping: 22 }}
+              href="#contact"
+              className="group rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900/70 to-zinc-900/40 p-6 transition hover:border-red-500/30 hover:shadow-[0_0_40px_rgba(239,68,68,0.15)]"
+            >
               <div className="aspect-video rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 mb-4 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(239,68,68,0.2),transparent_35%)]" />
               </div>
@@ -38,9 +52,9 @@ export default function Work() {
                 </div>
                 <ArrowUpRight className="text-zinc-400 group-hover:text-red-400 transition" />
               </div>
-            </a>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

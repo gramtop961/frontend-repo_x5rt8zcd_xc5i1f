@@ -1,4 +1,5 @@
 import { Code2, Layers, Rocket, Shield } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -33,17 +34,29 @@ export default function Services() {
           <p className="mt-3 text-zinc-300">A compact, expert team shipping reliable software with a premium feel.</p>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+          className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {services.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900/70 to-zinc-900/40 p-6 transition hover:border-red-500/30 hover:shadow-[0_0_40px_rgba(239,68,68,0.15)]">
+            <motion.div
+              key={title}
+              variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="group rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900/70 to-zinc-900/40 p-6 transition hover:border-red-500/30 hover:shadow-[0_0_40px_rgba(239,68,68,0.15)]"
+            >
               <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/15 text-red-400 group-hover:bg-red-500/25">
                 <Icon size={20} />
               </div>
               <h3 className="text-white font-semibold">{title}</h3>
               <p className="mt-2 text-sm text-zinc-400">{desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

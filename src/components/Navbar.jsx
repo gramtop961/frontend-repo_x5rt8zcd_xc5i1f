@@ -1,11 +1,17 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 border-b border-red-500/10 bg-black/70 backdrop-blur-md">
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed top-0 inset-x-0 z-50 border-b border-red-500/10 bg-black/70 backdrop-blur-md"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <a href="#" className="flex items-center gap-2">
@@ -29,16 +35,21 @@ export default function Navbar() {
         </div>
 
         {open && (
-          <div className="md:hidden pb-6">
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden pb-6"
+          >
             <div className="mt-2 grid gap-2">
               <a onClick={() => setOpen(false)} href="#services" className="rounded-lg px-3 py-2 text-zinc-200 hover:bg-white/5">Services</a>
               <a onClick={() => setOpen(false)} href="#work" className="rounded-lg px-3 py-2 text-zinc-200 hover:bg-white/5">Work</a>
               <a onClick={() => setOpen(false)} href="#contact" className="rounded-lg px-3 py-2 text-zinc-200 hover:bg-white/5">Contact</a>
               <a onClick={() => setOpen(false)} href="#contact" className="rounded-lg px-3 py-2 bg-red-600 text-white">Start a Project</a>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
-    </header>
+    </motion.header>
   );
 }
